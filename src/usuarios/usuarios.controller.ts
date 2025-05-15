@@ -7,11 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('usuarios')
 export class UsuariosController {
-  constructor(private readonly usuariosService: UsuariosService,  
-
-  @InjectRepository(Usuario)
-  private readonly usuarioRepo: Repository<Usuario>
-  ) {}
+  constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post('cadastro')
   async cadastrar(@Body() dados: Partial<Usuario>) {
@@ -34,12 +30,8 @@ export class UsuariosController {
   @UseGuards(AuthGuard)
   async atualizarChavePix(@Req() req, @Body('chavePix') chavePix: string) {
     const userId = req.user.id;
-    const usuario = await this.usuarioRepo.findOne({ where: { id: userId } });
+    const usuario = await this.usuariosService.atualizarChavePix( userId , chavePix);
     if (!usuario) throw new NotFoundException('Usuário não encontrado');
-    
-    usuario.chavePix = chavePix;
-    await this.usuarioRepo.save(usuario);
-    return { message: 'Chave PIX atualizada com sucesso' };
   }
   
   @Get(':id/painel')
@@ -49,23 +41,10 @@ export class UsuariosController {
 
   @Get('saldo')
   async obterSaldoEHistorico(@Query('usuarioId') usuarioId: number) {
-  const usuario = await this.usuarioRepo.findOne({
-    where: { id: usuarioId },
-    relations: ['apostas', 'apostas.corrida'],
-  });
+  const usuario = await this.usuariosService.getPainelCompleto(usuarioId);
 
   if (!usuario) throw new NotFoundException('Usuário não encontrado');
 
-  return {
-    nome: usuario.nomeCompleto,
-    saldo: usuario.saldo,
-    apostas: usuario.apostas.map(a => ({
-      corridaId: a.corrida.id,
-      tartaruga: a.tartaruga,
-      valor: a.valor,
-      premio: a.premio ?? null,
-    })),
-  };
 }
 
 

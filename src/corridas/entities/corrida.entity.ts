@@ -1,6 +1,6 @@
 // src/corridas/entities/corrida.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
-import { Aposta } from '../../../apostas/entities/aposta.entity/aposta.entity';
+import { Aposta } from '../../apostas/entities/aposta.entity';
 
 @Entity()
 export class Corrida {

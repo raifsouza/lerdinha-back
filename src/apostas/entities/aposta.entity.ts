@@ -1,7 +1,7 @@
 // src/apostas/entities/aposta.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Corrida } from '../../../corridas/entities/corrida.entity/corrida.entity';
-import { Usuario } from '../../../usuarios/usuario.entity';
+import { Corrida } from '../../corridas/entities/corrida.entity';
+import { Usuario } from '../../usuarios/usuario.entity';
 
 @Entity()
 export class Aposta {

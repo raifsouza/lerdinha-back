@@ -2,9 +2,9 @@
 
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Corrida } from './entities/corrida.entity/corrida.entity';
+import { Corrida } from './entities/corrida.entity';
 import { MoreThanOrEqual, Repository } from 'typeorm';
-import { Aposta } from '../apostas/entities/aposta.entity/aposta.entity';
+import { Aposta } from '../apostas/entities/aposta.entity';
 import { Promocao } from 'src/promocoes/entities/promocao.entity';
 import { Usuario } from 'src/usuarios/usuario.entity';
 

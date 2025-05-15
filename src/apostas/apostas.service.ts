@@ -1,10 +1,10 @@
 // src/apostas/apostas.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Aposta } from '../apostas/entities/aposta.entity/aposta.entity';
+import { Aposta } from './entities/aposta.entity';
 import { Repository } from 'typeorm';
 import { Usuario } from '../usuarios/usuario.entity';
-import { Corrida } from '../corridas/entities/corrida.entity/corrida.entity';
+import { Corrida } from '../corridas/entities/corrida.entity';
 
 @Injectable()
 export class ApostasService {

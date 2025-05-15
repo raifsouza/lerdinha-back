@@ -18,6 +18,10 @@ export class UsuariosService {
     return this.usuariosRepository.find();
   }
 
+  async findByEmail(email: string): Promise<Usuario | null> {
+    return this.usuariosRepository.findOne({ where: { email } });
+  }
+
   async getPainelCompleto(userId: number) {
     const usuario = await this.usuariosRepository.findOne({
       where: { id: userId },

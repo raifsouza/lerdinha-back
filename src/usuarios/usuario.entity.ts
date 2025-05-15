@@ -1,4 +1,4 @@
-import { Aposta } from '../apostas/entities/aposta.entity/aposta.entity';
+import { Aposta } from '../apostas/entities/aposta.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity('usuarios')
@@ -15,7 +15,7 @@ export class Usuario {
   @Column({ unique: true })
   email: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.0 })
+  @Column({ default: 0 })
   saldo: number;
 
   @Column()

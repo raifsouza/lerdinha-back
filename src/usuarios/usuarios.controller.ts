@@ -20,18 +20,19 @@ export class UsuariosController {
   }
 
   @Patch('resgatar-pix')
-  @UseGuards(AuthGuard)
+@UseGuards(AuthGuard('jwt'))
   async resgatarPix(@Req() req: any) {
   const userId = req.user.id;
   return this.usuariosService.resgatarPix(userId);
   }
 
   @Patch('chave-pix')
-  @UseGuards(AuthGuard)
+@UseGuards(AuthGuard('jwt'))
   async atualizarChavePix(@Req() req, @Body('chavePix') chavePix: string) {
     const userId = req.user.id;
     const usuario = await this.usuariosService.atualizarChavePix( userId , chavePix);
     if (!usuario) throw new NotFoundException('Usuário não encontrado');
+     return this.usuariosService.atualizarChavePix(userId, chavePix);
   }
   
   @Get(':id/painel')
@@ -44,8 +45,8 @@ export class UsuariosController {
   const usuario = await this.usuariosService.getPainelCompleto(usuarioId);
 
   if (!usuario) throw new NotFoundException('Usuário não encontrado');
-
-}
+      return usuario; 
+  }
 
 
 

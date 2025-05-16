@@ -22,7 +22,7 @@ dotenv.config();
       logging: true,
       autoLoadEntities: true,
     }),
-   //  UsuariosModule,
+     UsuariosModule,
      CorridasModule,
      ApostasModule,
      PromocoesModule,
